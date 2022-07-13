@@ -14,11 +14,11 @@ import ru.kata.spring.boot_security.demo.services.security.AccountDetails;
 import java.util.Arrays;
 
 @Controller
-public class WebController {
+public class AdminUserController {
     private UserService userservice;
 
     @Autowired
-    public WebController(UserService userservice) {
+    public AdminUserController(UserService userservice) {
         this.userservice = userservice;
     }
 
