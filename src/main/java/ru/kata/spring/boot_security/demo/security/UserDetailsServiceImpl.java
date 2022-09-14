@@ -1,12 +1,12 @@
-package ru.kata.spring.boot_security.demo.services.security;
+package ru.kata.spring.boot_security.demo.security;
 
+import ru.kata.spring.boot_security.demo.dao.UserDao;
+import ru.kata.spring.boot_security.demo.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.dao.UserDao;
-import ru.kata.spring.boot_security.demo.models.User;
 
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public AccountDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<User> user = userDao.findByUsername(username);
         if (user.size() != 1) {
-            throw new UsernameNotFoundException("User ot found");
+            throw new UsernameNotFoundException("User not found");
         }
         return new AccountDetails(user.get(0));
     }

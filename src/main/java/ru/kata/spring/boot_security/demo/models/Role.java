@@ -39,24 +39,10 @@ public class Role {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return name.equals(role.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
     public String toString() {
-        return this.name.split("_")[1];
+        return getName();
     }
 }
-
 
 
 

@@ -7,26 +7,21 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "first_name")
-    private String firstname;
+    @Column(name = "surname")
+    private String surname;
 
-    @Column(name = "second_name")
-    private String secondName;
-
-    @Column(name = "age")
-    private int age;
 
     @Column(name = "email")
     private String email;
@@ -52,12 +47,10 @@ public class User {
         this.roles= roles.stream().map(Role::new).collect(Collectors.toSet());
     }
 
-    public User(String username, String password, String firstname, String secondName, int age, String email, Collection<String>roles) {
+    public User(String username, String password,String surname, String email, Collection<String>roles) {
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.secondName = secondName;
-        this.age = age;
+        this.surname = surname;
         this.email = email;
         this.roles= roles.stream().map(Role::new).collect(Collectors.toSet());
     }
@@ -94,29 +87,17 @@ public class User {
         this.roles = roles;
     }
 
-    public String getFirstname() {
-        return firstname;
+
+
+    public String getSurname() {
+        return surname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setSurname(String secondName) {
+        this.surname = secondName;
     }
 
-    public String getSecondName() {
-        return secondName;
-    }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getEmail() {
         return email;
@@ -131,18 +112,7 @@ public class User {
         return roles.stream().map(p->new SimpleGrantedAuthority(p.getName())).collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age && Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(firstname, user.firstname) && Objects.equals(secondName, user.secondName) && Objects.equals(email, user.email) && Objects.equals(roles, user.roles);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, firstname, secondName, age, email, roles);
-    }
 
     @Override
     public String toString() {
@@ -150,16 +120,11 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", age=" + age +
+                ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
                 '}';
     }
 }
-
-
-
 
 

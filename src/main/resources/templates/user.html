@@ -24,18 +24,14 @@
 <table border="1" align="center" cellspacing="0" cellpadding="3">
     <tr>
         <th>UserName</th>
-        <th>Name</th>
-        <th>Second Name</th>
-        <th>Age</th>
+        <th>Surname</th>
         <th>Email</th>
         <th>Role</th>
 
     </tr>
     <tr>
         <td th:text="${user.getUsername()}">UserName</td>
-        <td th:text="${user.getFirstname()}">FirstName</td>
-        <td th:text="${user.getSecondName()}">SecondName</td>
-        <td th:text="${user.getAge()}">Age</td>
+        <td th:text="${user.getSurname()}">Surname</td>
         <td th:text="${user.getEmail()}">Email</td>
         <td th:text="${user.getRoles()}">Roles</td>
              </td>

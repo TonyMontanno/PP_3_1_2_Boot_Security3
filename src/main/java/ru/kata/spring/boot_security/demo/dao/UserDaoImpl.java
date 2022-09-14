@@ -2,10 +2,9 @@ package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.kata.spring.boot_security.demo.models.User;
 
 import javax.persistence.EntityManager;
-
-import ru.kata.spring.boot_security.demo.models.User;
 
 import java.util.List;
 
@@ -39,16 +38,10 @@ public class UserDaoImpl implements UserDao {
         return entityManager.find(User.class, id);
     }
 
-    @Override
-    public void editUser(Long id, User user) {
 
-        User edit = entityManager.find(User.class, id);
-        edit.setUsername(user.getUsername());
-        edit.setFirstname(user.getFirstname());
-        edit.setSecondName(user.getSecondName());
-        edit.setAge(user.getAge());
-        edit.setEmail(user.getEmail());
-        edit.setPassword(user.getPassword());
+    @Override
+    public void editUser(User user) {
+        entityManager.merge(user);
     }
 
     @Override
